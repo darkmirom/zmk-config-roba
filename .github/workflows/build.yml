@@ -9,20 +9,14 @@ jobs:
     strategy:
       matrix:
         include:
-          # roBa 大文字版
           - board: seeeduino_xiao_ble
             shield: roBa_L
           - board: seeeduino_xiao_ble
             shield: roBa_R
-          # roba 小文字版
-          - board: seeeduino_xiao_ble
-            shield: roba_left
-          - board: seeeduino_xiao_ble
-            shield: roba_right
     steps:
       - uses: actions/checkout@v4
       - name: Build
-        uses: zmkfirmware/zmk-build-action@v1
+        uses: zmkfirmware/zmk-build-action@v2
         with:
           board: ${{ matrix.board }}
           shield: ${{ matrix.shield }}
