@@ -4,14 +4,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_left:
+  build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      board: seeeduino_xiao_ble
-      shield: roBa_L
-
-  build_right:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      board: seeeduino_xiao_ble
-      shield: roBa_R
