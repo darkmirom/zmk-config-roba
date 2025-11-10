@@ -4,25 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - board: seeeduino_xiao_ble
-            shield: roBa_L
-          - board: seeeduino_xiao_ble
-            shield: roBa_R
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build
-        uses: zmkfirmware/zmk-build-action@v2
-        with:
-          board: ${{ matrix.board }}
-          shield: ${{ matrix.shield }}
-          zmk-ref: main
-      - name: Upload firmware
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.shield }}-${{ matrix.board }}
-          path: build/zephyr/zmk.uf2
+  build_left:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      board: seeeduino_xiao_ble
+      shield: roBa_L
+
+  build_right:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      board: seeeduino_xiao_ble
+      shield: roBa_R
